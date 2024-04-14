@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+
+import { LeagueDto } from '../../models/api-response.model';
+
 
 @Component({
   selector: 'app-league-item',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule, MatCardModule, MatDividerModule, CommonModule],
   templateUrl: './league-item.component.html',
   styleUrl: './league-item.component.scss'
 })
-export class LeagueItemComponent {
+export class LeagueItemComponent implements OnInit {
+  @Input() league!: LeagueDto
 
+  ngOnInit() {
+    console.log('Liga recibida: ', this.league);  
+  }
 }

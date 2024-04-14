@@ -12,7 +12,7 @@ export interface LeagueStore {
   providedIn: 'root'
 })
 export class StoreService {
-  leaguesStore: LeagueStore;
+  private leaguesStore: LeagueStore;
 
   constructor() {
     this.leaguesStore = {
@@ -26,6 +26,7 @@ export class StoreService {
       ...this.leaguesStore,
       leagues: [...leagues]
     }
+    console.log('Estado actual del store - setCountrySelected: ', this.leaguesStore);
   }
 
   setCountrySelected(countrySelected: CountrySelected) {
@@ -33,8 +34,15 @@ export class StoreService {
       ...this.leaguesStore,
       countrySelected
     }
-    console.log('Estado actual del store - setCountrySelected: ', this.leaguesStore);
-    
+    console.log('Estado actual del store - setLeagues: ', this.leaguesStore);    
+  }
+
+  getCountrySelected() {
+    return this.leaguesStore.countrySelected;
+  }
+
+  getLeagues() {
+    return this.leaguesStore.leagues;
   }
 
 

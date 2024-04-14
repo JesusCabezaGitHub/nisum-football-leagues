@@ -1,1 +1,5 @@
-<p>league-list works!</p>
+<section class="container-list">
+    @for (league of leagues; track $index) {
+    <app-league-item [league]="league" />
+    }
+</section>

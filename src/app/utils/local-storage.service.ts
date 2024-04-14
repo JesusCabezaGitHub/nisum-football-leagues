@@ -11,7 +11,11 @@ export class LocalStorageService {
   constructor() { }
 
   getLeagues() {
-    return localStorage.getItem(this.storageKey) || this.defaultLeagues;
+    const leagues = localStorage.getItem(this.storageKey);
+    if(leagues) {
+      return JSON.parse(leagues)
+    }
+    return  this.defaultLeagues;
   }
 
   saveLeagues(leagues: LeagueDto[]) {
