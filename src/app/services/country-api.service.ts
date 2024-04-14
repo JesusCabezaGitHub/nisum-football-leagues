@@ -1,33 +1,23 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ApiCountryResponse, Country } from '../models/api-country-response.model';
+import { ApiCountryResponse, Country } from '../models/api-response.model';
 import { environment } from '../../environments/environment';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CountryApiService {
 
   private readonly httpClient = inject(HttpClient);
-  private readonly url = environment.API_COUNTRY_URL;
-  private readonly API_KEY = environment.API_KEY;
+  //private readonly url = environment.API_COUNTRY_URL;
+  private readonly url = '../../assets/countries.json';
 
   getCountries(): Observable<Country[]> {
-    return this.httpClient.get<ApiCountryResponse>(this.url, this.createHeaders()).pipe(
+    return this.httpClient.get<ApiCountryResponse>(this.url).pipe(
       map(response => response.response)
     )
-  }
-
-  private createHeaders(): { headers: HttpHeaders } {
-    const headers = new HttpHeaders({
-      'x-rapidapi-host': 'v3.football.api-sports.io',
-      'x-rapidapi-key': this.API_KEY
-    }); 
-    return { headers };
   }
 }

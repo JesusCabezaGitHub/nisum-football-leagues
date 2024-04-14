@@ -1,1 +1,17 @@
-<p>country-selector works!</p>
+<section class="country-selector">
+    <mat-form-field class="country-selector__input">
+        <mat-label>País</mat-label>
+        <input matInput aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+            @for (country of filteredCountries | async; track country) {
+            <mat-option [value]="country.name" (onSelectionChange)="onSelectionCountryChange($event.source.value)">
+                <img alt="" class="option-img" [src]="country.flag" height="25">
+                <span>{{country.name}}</span>
+            </mat-option>
+            }
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-checkbox [formControl]="allLeaguesCtrl" color="primary" (change)="onChangeAllLeagues()">Todas las ligas del
+        mundo</mat-checkbox>
+</section>

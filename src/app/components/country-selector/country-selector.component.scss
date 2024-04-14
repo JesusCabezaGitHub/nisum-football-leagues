@@ -1,0 +1,27 @@
+.country-selector {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+
+    &__input {
+        width: 80%;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.option-img {
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+[dir='rtl'] .option-img {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+.example-margin {
+    margin: 0 12px;
+}

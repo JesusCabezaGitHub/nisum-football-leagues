@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CountryApiService } from './services/country-api.service';
-import { inject } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -12,12 +12,8 @@ import { inject } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'nissum-football-leagues';
-  countryApiServive = inject(CountryApiService);
-  
-  ngOnInit() {
-    this.countryApiServive.getCountries().subscribe(countries => {
-      console.log(countries);
-    })
+    
+  ngOnInit() { 
   }
   
   
