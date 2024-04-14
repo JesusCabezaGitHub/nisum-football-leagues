@@ -5,7 +5,7 @@
         <mat-autocomplete #auto="matAutocomplete">
             @for (country of filteredCountries | async; track country) {
             <mat-option [value]="country.name" (onSelectionChange)="onSelectionCountryChange($event.source.value)">
-                <img alt="" class="option-img" [src]="country.flag" height="25">
+                <img alt="" class="country-selector__img" [src]="country.flag" height="25">
                 <span>{{country.name}}</span>
             </mat-option>
             }
@@ -13,5 +13,9 @@
     </mat-form-field>
 
     <mat-checkbox [formControl]="allLeaguesCtrl" color="primary" (change)="onChangeAllLeagues()">Todas las ligas del
-        mundo</mat-checkbox>
+        mundo
+    </mat-checkbox>
+    <button mat-icon-button aria-label="Filter leagues" (click)="filterLeauges()">
+        <mat-icon color="primary">filter_list</mat-icon>
+    </button>
 </section>

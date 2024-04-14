@@ -9,7 +9,7 @@ import { StoreService } from '../store/store.service';
 })
 export class UseCaseService {
   private localStorageService = inject(LocalStorageService);
-  private storeService = inject(StoreService);
+  storeService = inject(StoreService);
   
   constructor() { }
 
@@ -31,11 +31,11 @@ export class UseCaseService {
   }
 
   getFilteredLeagues() {
-    
+    this.getAllLeagues()
   }
 
   private setStoreByFilter(allLeagues: LeagueDto[]) {
-    const countrySelected = this.storeService.getCountrySelected();
+    const countrySelected = this.storeService.leaguesStore.countrySelected;
     if(countrySelected === 'all') {
       this.storeService.setLeagues(allLeagues);
       return

@@ -5,6 +5,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -12,6 +14,7 @@ import {map, startWith} from 'rxjs/operators';
 import { Country } from '../../models/api-response.model'
 import { CountryApiService } from '../../services/country-api.service'
 import { StoreService } from '../../store/store.service'
+import { UseCaseService } from '../../uses-cases/use-case.service'
 
 @Component({
   selector: 'app-country-selector',
@@ -22,6 +25,8 @@ import { StoreService } from '../../store/store.service'
     MatInputModule,
     MatAutocompleteModule,
     MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
     AsyncPipe,
   ],
@@ -30,9 +35,12 @@ import { StoreService } from '../../store/store.service'
   styleUrl: './country-selector.component.scss'
 })
 export class CountrySelectorComponent implements OnInit {
-  private countries: Country[] = [];
   private countryApiServive = inject(CountryApiService);
   private storeService = inject(StoreService);
+  private useCaseService = inject(UseCaseService);
+
+
+  private countries: Country[] = [];
   countryCtrl = new FormControl('');
   allLeaguesCtrl = new FormControl(true)
   filteredCountries: Observable<Country[]>;
@@ -59,12 +67,10 @@ export class CountrySelectorComponent implements OnInit {
   }
 
   onSelectionCountryChange(countrySelected: string) {
-    console.log(countrySelected);
     this.storeService.setCountrySelected(countrySelected);    
   }
 
   onChangeAllLeagues() {
-    console.log(this.allLeaguesCtrl.value);
     if(this.allLeaguesCtrl.value) {
       this.storeService.setCountrySelected('all');
       this.countryCtrl.disable();
@@ -72,5 +78,9 @@ export class CountrySelectorComponent implements OnInit {
       this.storeService.setCountrySelected('');
       this.countryCtrl.enable();
     }
+  }
+
+  filterLeauges() {
+    this.useCaseService.getFilteredLeagues();
   }
 }

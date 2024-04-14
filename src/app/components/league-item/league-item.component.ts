@@ -14,10 +14,7 @@ import { LeagueDto } from '../../models/api-response.model';
   templateUrl: './league-item.component.html',
   styleUrl: './league-item.component.scss'
 })
-export class LeagueItemComponent implements OnInit {
+export class LeagueItemComponent {
   @Input() league!: LeagueDto
 
-  ngOnInit() {
-    console.log('Liga recibida: ', this.league);  
-  }
 }

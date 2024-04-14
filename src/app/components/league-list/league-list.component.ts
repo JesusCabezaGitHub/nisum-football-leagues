@@ -15,13 +15,10 @@ import { LeagueItemComponent } from '../league-item/league-item.component'
 })
 export class LeagueListComponent implements OnInit {
   
-  private storeService = inject(StoreService);
+  storeService = inject(StoreService);
   private useCaseService = inject(UseCaseService);
-  
-  leagues: LeagueDto[] = [];
   
   ngOnInit() {
     this.useCaseService.getAllLeagues();
-    this.leagues = this.storeService.getLeagues(); 
   }
 }
