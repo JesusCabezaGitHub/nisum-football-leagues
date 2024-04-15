@@ -12,9 +12,8 @@ import { environment } from '../../environments/environment';
 export class CountryApiService {
 
   private readonly httpClient = inject(HttpClient);
-  //private readonly url = environment.API_COUNTRY_URL;
-  private readonly url = '../../assets/countries.json';
-
+  private readonly url = environment.API_COUNTRY_URL;
+ 
   getCountries(): Observable<Country[]> {
     return this.httpClient.get<ApiCountryResponse>(this.url).pipe(
       map(response => response.response)
