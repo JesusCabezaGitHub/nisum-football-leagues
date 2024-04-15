@@ -1,7 +1,7 @@
 <mat-card class="card">
     <mat-card-header>
         <mat-card-title>{{league.league.name | slice:0:16}}</mat-card-title>
-        <mat-card-subtitle>{{league.league.type}}</mat-card-subtitle>
+        <mat-card-subtitle>{{league.league.type === 'League' ? 'Liga' : 'Copa'}}</mat-card-subtitle>
     </mat-card-header>
     <mat-divider></mat-divider>
     <img class="card__image" mat-card-image [src]="league.league.logo" width="250px" height="200px"
@@ -17,6 +17,6 @@
     <mat-divider></mat-divider>
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="editLeague()">Editar</button>
-        <button mat-raised-button color="primary">Eliminar</button>
+        <button mat-raised-button color="primary" (click)="deleteLeague()">Eliminar</button>
     </mat-card-actions>
 </mat-card>

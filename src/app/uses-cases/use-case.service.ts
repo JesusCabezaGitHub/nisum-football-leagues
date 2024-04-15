@@ -33,8 +33,12 @@ export class UseCaseService {
     this.localStorageService.saveLeagues(allLeagues);
   }
 
-  removeLeague(leagueId: number) {
-
+  deleteLeague(leagueId: number) {
+    const allLeagues = this.localStorageService.getLeagues();
+    this.localStorageService.removeCurrentData();
+    const filteredLeagues = allLeagues.filter( league => league.league.id !== leagueId)
+    this.localStorageService.saveLeagues(filteredLeagues);
+    this.getAllLeagues();
   }
 
   getFilteredLeagues() {
