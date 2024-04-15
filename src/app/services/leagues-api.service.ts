@@ -10,8 +10,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class LeaguesApiService {
   private readonly httpClient = inject(HttpClient);
-  //private readonly url = environment.API_LEAGUES_URL;
-  private readonly url = '../../assets/leagues.json';
+  private readonly url = environment.API_LEAGUES_URL;
   
   constructor() { }
 
