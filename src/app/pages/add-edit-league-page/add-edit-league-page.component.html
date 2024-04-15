@@ -24,7 +24,7 @@
 
     <mat-form-field>
         <mat-label>Pais</mat-label>
-        <input matInput disabled [value]="storeService.leaguesStore.countrySelected">
+        <input matInput formControlName="country">
     </mat-form-field>
     <div>
         <button type="submit" mat-flat-button color="primary" [disabled]="!isValidForm">Guardar Liga</button>

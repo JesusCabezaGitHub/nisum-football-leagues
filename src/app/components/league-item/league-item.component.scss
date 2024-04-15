@@ -1,6 +1,6 @@
 .card {
     width: 250px;
-    height: 350px;
+    height: 370px;
     margin: auto;
 
     &__image {
@@ -18,4 +18,8 @@
         }
 
     }
+}
+
+button {
+    margin-right: 0.75rem;
 }

@@ -35,6 +35,7 @@ export class AddEditLeaguePageComponent implements OnInit {
     this.leagueForm = this.formBuilder.group({
       name: [null, [Validators.required]],
       type: [null, [Validators.required]],
+      country: [null, []]
     })
   }
   ngOnInit() {
@@ -45,7 +46,10 @@ export class AddEditLeaguePageComponent implements OnInit {
       if(leagueInStore) {
         this.leagueForm.get('name')?.setValue(leagueInStore.league.name);
         this.leagueForm.get('type')?.setValue(leagueInStore.league.type);
+        this.leagueForm.get('country')?.setValue(leagueInStore.country.name);
       }
+    } else {
+      this.leagueForm.get('country')?.setValue(this.storeService.leaguesStore.countrySelected);
     }
   }
 
@@ -69,14 +73,12 @@ export class AddEditLeaguePageComponent implements OnInit {
     const countrySelected = this.storeService.leaguesStore.countrySelected;
     const countries = this.storeService.leaguesStore.countries;
     const country: CountryLeague = countries.find( country => country.name === countrySelected)!
-    const leagueId = this.getLeagueId();
-    const leagueLogo = this.getLeagueLogo();
-    
+       
     const leagueInformation: LeagueInformation = {
-      id: leagueId ,
+      id: this.getLeagueId() ,
       name: this.leagueForm.value.name,
       type: this.leagueForm.value.type,
-      logo: this.urlDefaultLogo
+      logo: this.getLeagueLogo()
     }
 
     const leagueDto: LeagueDto = {

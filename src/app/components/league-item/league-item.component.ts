@@ -25,7 +25,6 @@ export class LeagueItemComponent {
 
   editLeague() {
     this.storeService.setCurrentLeagueForEdit(this.league);
-    this.storeService.setCountrySelected(this.league.country.name)
     this.storeService.setAddEditAction('edit');
     this.router.navigate(['/add-edit-leagues']);
   }
