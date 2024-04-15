@@ -1,0 +1,32 @@
+<header>
+    <button mat-icon-button aria-label="Filter leagues" (click)="backToLeagues()">
+        <mat-icon color="primary">arrow_back</mat-icon>
+    </button>
+</header>
+<form class="form-container" [formGroup]="leagueForm" (submit)="saveLeague()">
+    <mat-form-field>
+        <mat-label>Ingrese el Nombre</mat-label>
+        <input matInput formControlName="name" required>
+        @if (!isValidName) {
+        <mat-error>{{errorMessage}}</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Seleccione el Tipo</mat-label>
+        <mat-select formControlName="type">
+            <mat-option value="Cup">Cup</mat-option>
+            <mat-option value="League">League</mat-option>
+        </mat-select>
+        @if (!isValidType) {
+        <mat-error>{{errorMessage}}</mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Pais</mat-label>
+        <input matInput formControlName="country">
+    </mat-form-field>
+    <div>
+        <button type="submit" mat-flat-button color="primary" [disabled]="!isValidForm">Guardar Liga</button>
+    </div>
+</form>

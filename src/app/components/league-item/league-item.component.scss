@@ -1,0 +1,25 @@
+.card {
+    width: 250px;
+    height: 370px;
+    margin: auto;
+
+    &__image {
+        padding: 8px;
+    }
+
+    &__country {
+        padding: 0.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        img {
+            margin: 0;
+        }
+
+    }
+}
+
+button {
+    margin-right: 0.75rem;
+}

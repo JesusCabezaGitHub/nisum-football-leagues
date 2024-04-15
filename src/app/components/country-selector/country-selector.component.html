@@ -1,0 +1,20 @@
+<section class="country-selector">
+    <mat-checkbox [formControl]="allLeaguesCtrl" color="primary" (change)="onChangeAllLeagues()">Todas las ligas del
+        mundo
+    </mat-checkbox>
+    <mat-form-field class="country-selector__input">
+        <mat-label>País</mat-label>
+        <input matInput aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+            @for (country of filteredCountries | async; track country) {
+            <mat-option [value]="country.name" (onSelectionChange)="onSelectionCountryChange($event.source.value)">
+                <img alt="" class="country-selector__img" [src]="country.flag" height="25">
+                <span>{{country.name}}</span>
+            </mat-option>
+            }
+        </mat-autocomplete>
+    </mat-form-field>
+    <button mat-icon-button aria-label="Filter leagues" (click)="filterLeauges()">
+        <mat-icon color="primary">filter_list</mat-icon>
+    </button>
+</section>

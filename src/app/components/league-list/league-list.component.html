@@ -1,0 +1,5 @@
+<section class="container-list">
+    @for (league of storeService.leaguesStore.leagues; track $index) {
+    <app-league-item [league]="league" />
+    }
+</section>
