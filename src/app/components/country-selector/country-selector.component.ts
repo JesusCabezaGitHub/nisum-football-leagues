@@ -61,7 +61,10 @@ export class CountrySelectorComponent implements OnInit {
       this.storeService.setCountries(countries)
     })
     if(this.storeService.leaguesStore.isLoadedInitialData) {
-      this.countryCtrl.setValue(this.storeService.leaguesStore.countrySelected)
+      if(this.storeService.leaguesStore.countrySelected !== 'all') {
+        this.countryCtrl.setValue(this.storeService.leaguesStore.countrySelected)
+      }
+      
       this.allLeaguesCtrl.setValue(this.storeService.leaguesStore.countrySelected === 'all')
       this.countryCtrl.enable(); 
     }

@@ -39,6 +39,7 @@ export class AddEditLeaguePageComponent implements OnInit {
     })
   }
   ngOnInit() {
+    this.leagueForm.get('country')?.disable();
     this.wayForm = this.storeService.leaguesStore.addEditAction;
     if(this.wayForm === 'edit') {
       const leagueInStore = this.storeService.leaguesStore.currentLeagueForEdit;
