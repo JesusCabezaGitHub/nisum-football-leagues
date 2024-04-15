@@ -14,7 +14,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/home-page/home-page.component').then( m => m.HomePageComponent)    
     },
     {
-        path: 'manage-leagues',
+        path: 'add-edit-leagues',
         loadComponent: () => import('./pages/add-edit-league-page/add-edit-league-page.component').then( m => m.AddEditLeaguePageComponent)
     },
     {

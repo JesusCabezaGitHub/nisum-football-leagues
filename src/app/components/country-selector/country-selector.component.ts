@@ -36,7 +36,7 @@ import { UseCaseService } from '../../uses-cases/use-case.service'
 })
 export class CountrySelectorComponent implements OnInit {
   private countryApiServive = inject(CountryApiService);
-  private storeService = inject(StoreService);
+  storeService = inject(StoreService);
   private useCaseService = inject(UseCaseService);
 
 
@@ -58,7 +58,13 @@ export class CountrySelectorComponent implements OnInit {
   ngOnInit() {
     this.countryApiServive.getCountries().subscribe(countries => {
       this.countries = countries;
+      this.storeService.setCountries(countries)
     })
+    if(this.storeService.leaguesStore.isLoadedInitialData) {
+      this.countryCtrl.setValue(this.storeService.leaguesStore.countrySelected)
+      this.allLeaguesCtrl.setValue(this.storeService.leaguesStore.countrySelected === 'all')
+      this.countryCtrl.enable(); 
+    }
   }
 
   private _filterCountries(value: string): Country[] {
@@ -75,7 +81,9 @@ export class CountrySelectorComponent implements OnInit {
       this.storeService.setCountrySelected('all');
       this.countryCtrl.disable();
     }else {
-      this.storeService.setCountrySelected('');
+      if(this.storeService.leaguesStore.countrySelected === 'all') {
+        this.storeService.setCountrySelected('');
+      }
       this.countryCtrl.enable();
     }
   }

@@ -10,7 +10,7 @@ export class LocalStorageService {
   
   constructor() { }
 
-  getLeagues() {
+  getLeagues(): LeagueDto[] {
     const leagues = localStorage.getItem(this.storageKey);
     if(leagues) {
       return JSON.parse(leagues)

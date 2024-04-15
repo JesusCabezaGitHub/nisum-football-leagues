@@ -1,4 +1,7 @@
 <section class="country-selector">
+    <mat-checkbox [formControl]="allLeaguesCtrl" color="primary" (change)="onChangeAllLeagues()">Todas las ligas del
+        mundo
+    </mat-checkbox>
     <mat-form-field class="country-selector__input">
         <mat-label>País</mat-label>
         <input matInput aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl">
@@ -11,10 +14,6 @@
             }
         </mat-autocomplete>
     </mat-form-field>
-
-    <mat-checkbox [formControl]="allLeaguesCtrl" color="primary" (change)="onChangeAllLeagues()">Todas las ligas del
-        mundo
-    </mat-checkbox>
     <button mat-icon-button aria-label="Filter leagues" (click)="filterLeauges()">
         <mat-icon color="primary">filter_list</mat-icon>
     </button>

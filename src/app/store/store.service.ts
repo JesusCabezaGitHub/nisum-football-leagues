@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
-import { LeagueDto } from '../models/api-response.model'
+import { LeagueDto, Country } from '../models/api-response.model'
 
-export type CountrySelected = 'all' | string
+export type CountrySelected = 'all' | string;
+export type AddEditAction = 'add' | 'edit';
 
 export interface LeagueStore {
   leagues: LeagueDto[],
-  countrySelected: CountrySelected
+  countries: Country[],
+  currentLeagueForEdit: LeagueDto | null
+  countrySelected: CountrySelected,
+  addEditAction: AddEditAction,
+  isLoadedInitialData: boolean
 }
 
 @Injectable({
@@ -16,8 +21,12 @@ export class StoreService {
 
   constructor() {
     this.leaguesStore = {
-      leagues: [], 
-      countrySelected: 'all'
+      leagues: [],
+      countries: [],
+      currentLeagueForEdit: null, 
+      countrySelected: 'all',
+      addEditAction: 'add',
+      isLoadedInitialData: false
     }
   }
   
@@ -26,7 +35,20 @@ export class StoreService {
       ...this.leaguesStore,
       leagues: [...leagues]
     }
-    console.log('Estado actual del store - setCountrySelected: ', this.leaguesStore);
+  }
+
+  setCountries(countries: Country[]) {
+    this.leaguesStore = {
+      ...this.leaguesStore,
+      countries: [...countries]
+    }
+  }
+
+  setCurrentLeagueForEdit(currentLeagueForEdit: LeagueDto) {
+    this.leaguesStore = {
+      ...this.leaguesStore,
+      currentLeagueForEdit
+    }
   }
 
   setCountrySelected(countrySelected: CountrySelected) {
@@ -34,6 +56,19 @@ export class StoreService {
       ...this.leaguesStore,
       countrySelected
     }
-    console.log('Estado actual del store - setLeagues: ', this.leaguesStore);    
+  }
+
+  setAddEditAction(addEditAction: AddEditAction) {
+    this.leaguesStore = {
+      ...this.leaguesStore,
+      addEditAction
+    }
+  }
+
+  setIsLoadedInitialData(isLoadedInitialData: boolean) {
+    this.leaguesStore = {
+      ...this.leaguesStore,
+      isLoadedInitialData
+    }
   }
 }

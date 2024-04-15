@@ -18,12 +18,19 @@ export class UseCaseService {
     this.setStoreByFilter(allLeagues);
   }
 
-  AddLeague(league: LeagueDto) {
-
+  addLeague(league: LeagueDto) {
+    const allLeagues = this.localStorageService.getLeagues();
+    this.localStorageService.removeCurrentData();
+    allLeagues.push(league);
+    this.localStorageService.saveLeagues(allLeagues);
   }
 
-  editLeague(leagueId: number) {
-
+  editLeague(leagueParam: LeagueDto) {
+    const allLeagues = this.localStorageService.getLeagues();
+    this.localStorageService.removeCurrentData();
+    const leaguePosition = allLeagues.findIndex(league => league.league.id === leagueParam.league.id)
+    allLeagues[leaguePosition] = {...leagueParam}
+    this.localStorageService.saveLeagues(allLeagues);
   }
 
   removeLeague(leagueId: number) {

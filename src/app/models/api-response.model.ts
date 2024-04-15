@@ -27,7 +27,7 @@ export interface ApiCountryResponse extends ApiResponse {
 
 //Leagues Models
 
-interface CountryLeague {
+export interface CountryLeague {
     name: string;
     code: null | string;
     flag: null | string;
@@ -38,7 +38,7 @@ export enum TypeLeague {
     League = "League",
 }
 
-interface LeagueInformation {
+export interface LeagueInformation {
     id:   number;
     name: string;
     type: TypeLeague;
